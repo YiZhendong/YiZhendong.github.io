@@ -6,20 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>zander&#39;s blog</title>
+  <title>一个用来转换滴滴账单的工具 | zander&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="背景公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zander&#39;s blog">
+<meta property="og:title" content="一个用来转换滴滴账单的工具">
 <meta property="og:url" content="http://yoursite.com/2017/08/13/didi-taxi-tool/index.html">
 <meta property="og:site_name" content="zander&#39;s blog">
 <meta property="og:description" content="背景公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/didi.jpg">
 <meta property="og:image" content="http://yoursite.com/images/didi-excel.jpg">
-<meta property="og:updated_time" content="2017-08-13T07:50:05.774Z">
+<meta property="og:updated_time" content="2017-08-13T07:58:29.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zander&#39;s blog">
+<meta name="twitter:title" content="一个用来转换滴滴账单的工具">
 <meta name="twitter:description" content="背景公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末">
 <meta name="twitter:image" content="http://yoursite.com/images/didi.jpg">
   
@@ -152,6 +153,21 @@
             <article id="post-didi-taxi-tool" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一个用来转换滴滴账单的工具
+    </h1>
+  
+
+        
+        <a href="/2017/08/13/didi-taxi-tool/" class="archive-article-date">
+  	<time datetime="2017-08-13T07:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末都进行这么一次的转换，实在太麻烦，所以，就需要一个小工具，自动将Excel转换为pdf。</p>
@@ -203,6 +219,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -411,6 +438,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
