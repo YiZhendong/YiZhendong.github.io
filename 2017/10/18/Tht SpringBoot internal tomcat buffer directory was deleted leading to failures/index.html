@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Java | zander&#39;s blog</title>
+  <title>springboot 内置的tomcat 缓存目录被删除导致的错误 | zander&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="zander的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zander&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/Java/index.html">
+  <meta name="description" content="##背景今天线上出现了一个文件上传的bug，运营同学需要上传一些黑名单，但是今天上传时，出现了错误，bug信息查阅后，提示以下信息： 1org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.web.multipar">
+<meta name="keywords" content="java,springboot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot 内置的tomcat 缓存目录被删除导致的错误">
+<meta property="og:url" content="http://yoursite.com/2017/10/18/Tht SpringBoot internal tomcat buffer directory was deleted leading to failures/index.html">
 <meta property="og:site_name" content="zander&#39;s blog">
-<meta property="og:description" content="zander的博客">
+<meta property="og:description" content="##背景今天线上出现了一个文件上传的bug，运营同学需要上传一些黑名单，但是今天上传时，出现了错误，bug信息查阅后，提示以下信息： 1org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.web.multipar">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-18T15:40:41.923Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zander&#39;s blog">
-<meta name="twitter:description" content="zander的博客">
+<meta name="twitter:title" content="springboot 内置的tomcat 缓存目录被删除导致的错误">
+<meta name="twitter:description" content="##背景今天线上出现了一个文件上传的bug，运营同学需要上传一些黑名单，但是今天上传时，出现了错误，bug信息查阅后，提示以下信息： 1org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.web.multipar">
   
     <link rel="alternative" href="/atom.xml" title="zander&#39;s blog" type="application/atom+xml">
   
@@ -145,60 +147,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Tht SpringBoot internal tomcat buffer directory was deleted leading to failures" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/13/didi-taxi-tool/" class="archive-article-date">
-  	<time datetime="2017-08-13T07:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/13/didi-taxi-tool/">将滴滴账单pdf生成Excel的工具</a>
+    <h1 class="article-title" itemprop="name">
+      springboot 内置的tomcat 缓存目录被删除导致的错误
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/10/18/Tht SpringBoot internal tomcat buffer directory was deleted leading to failures/" class="archive-article-date">
+  	<time datetime="2017-10-18T15:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##背景<br>今天线上出现了一个文件上传的bug，运营同学需要上传一些黑名单，但是今天上传时，出现了错误，bug信息查阅后，提示以下信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: Could not parse multipart servlet request; nested exception is java.io.IOException: The temporary upload location [/tmp/tomcat.1453407494973660739.10086/work/Tomcat/localhost/ROOT] is not valid</div></pre></td></tr></table></figure>
+<p>经过在网上查询，了解到，这个bug产生的原因在于，如果服务部署在CentOS系统上，那么用来存储上传文件的临时目录可能会被系统的tmpwatch命令定时删除，默认情况下，系统会删除tmp目录下30天没有访问过的文件，所以，导致了这个bug。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">If you choose to use Tomcat on CentOS be aware that, by default, a temporary directory is used to store compiled JSPs, file uploads etc. This directory may be deleted by tmpwatch while your application is running leading to failures. To avoid this, you may want to customize your tmpwatch configuration so that tomcat.* directories are not deleted, or configure server.tomcat.basedir so that embedded Tomcat uses a different location</div></pre></td></tr></table></figure>
+<p>##解决方法<br>1.重启<br>2.修改/etc/cron.daily/tmpwatch文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>! /bin/sh</div><div class="line">flags=-umc</div><div class="line">/usr/sbin/tmpwatch "$flags" -x /tmp/.X11-unix -x /tmp/.XIM-unix \</div><div class="line">        -x /tmp/.font-unix -x /tmp/.ICE-unix -x /tmp/.Test-unix \</div><div class="line">        -X '/tmp/hsperfdata_*' 10d /tmp \</div><div class="line">        -X '/tmp/tomcat.*' 10d /tmp</div><div class="line">/usr/sbin/tmpwatch "$flags" 30d /var/tmp</div><div class="line">for d in /var/&#123;cache/man,catman&#125;/&#123;cat?,X11R6/cat?,local/cat?&#125;; do</div><div class="line">    if [ -d "$d" ]; then</div><div class="line">        /usr/sbin/tmpwatch "$flags" -f 30d "$d"</div><div class="line">    fi</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>注：tmpwatch  recursively  removes files which haven’t been accessed for a given time.  Normally, it’s used to clean up directories which are used for<br>temporary holding space such as /tmp.<br>参数：<br>-x 或–exclude=path 排除某路径<br>-X 或–exclude-pattern=pattern 排除某规则下的路径</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/receiveMoney.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java,springboot</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/18/Tht SpringBoot internal tomcat buffer directory was deleted leading to failures/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/13/didi-taxi-tool/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">将滴滴账单pdf生成Excel的工具</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'zander-top'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -229,9 +363,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
