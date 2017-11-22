@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>将滴滴账单pdf生成Excel的工具 | zander&#39;s blog</title>
+  <title>Guava VS Java 8 (1) Optional | zander&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="背景公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末">
-<meta name="keywords" content="Java">
+  <meta name="description" content="背景Guava对于广大Java开发者来说是一个很有用的工具，提供了很多原生JDK不存在但是却非常有用的原生的类和方法，但是，自从Java 8 发布之后，Java 8 弥补了一些之前的缺憾，一些特性和Guava提供的方法和类非常相似，接下来，将会总结Guava 和Java 8 之间的相同点和不同点。截止目前（2017年11月22日），Guava的最新版本为23.0，就以当前这个版本和Java 8 作">
+<meta name="keywords" content="Java,Guava">
 <meta property="og:type" content="article">
-<meta property="og:title" content="将滴滴账单pdf生成Excel的工具">
-<meta property="og:url" content="http://yoursite.com/2017/08/13/didi-taxi-tool/index.html">
+<meta property="og:title" content="Guava VS Java 8 (1) Optional">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/Guava VS Java 8 (1) Optional/index.html">
 <meta property="og:site_name" content="zander&#39;s blog">
-<meta property="og:description" content="背景公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末">
+<meta property="og:description" content="背景Guava对于广大Java开发者来说是一个很有用的工具，提供了很多原生JDK不存在但是却非常有用的原生的类和方法，但是，自从Java 8 发布之后，Java 8 弥补了一些之前的缺憾，一些特性和Guava提供的方法和类非常相似，接下来，将会总结Guava 和Java 8 之间的相同点和不同点。截止目前（2017年11月22日），Guava的最新版本为23.0，就以当前这个版本和Java 8 作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/images/didi.jpg">
-<meta property="og:image" content="http://yoursite.com/images/didi-excel.jpg">
-<meta property="og:updated_time" content="2017-08-13T08:01:55.606Z">
+<meta property="og:image" content="http://yoursite.com/images/Optional-Java.PNG">
+<meta property="og:image" content="http://yoursite.com/images/Optional-Guava.PNG">
+<meta property="og:updated_time" content="2017-11-22T17:28:52.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将滴滴账单pdf生成Excel的工具">
-<meta name="twitter:description" content="背景公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末">
-<meta name="twitter:image" content="http://yoursite.com/images/didi.jpg">
+<meta name="twitter:title" content="Guava VS Java 8 (1) Optional">
+<meta name="twitter:description" content="背景Guava对于广大Java开发者来说是一个很有用的工具，提供了很多原生JDK不存在但是却非常有用的原生的类和方法，但是，自从Java 8 发布之后，Java 8 弥补了一些之前的缺憾，一些特性和Guava提供的方法和类非常相似，接下来，将会总结Guava 和Java 8 之间的相同点和不同点。截止目前（2017年11月22日），Guava的最新版本为23.0，就以当前这个版本和Java 8 作">
+<meta name="twitter:image" content="http://yoursite.com/images/Optional-Java.PNG">
   
     <link rel="alternative" href="/atom.xml" title="zander&#39;s blog" type="application/atom+xml">
   
@@ -150,41 +150,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-didi-taxi-tool" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Guava VS Java 8 (1) Optional" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      将滴滴账单pdf生成Excel的工具
+      Guava VS Java 8 (1) Optional
     </h1>
   
 
         
-        <a href="/2017/08/13/didi-taxi-tool/" class="archive-article-date">
-  	<time datetime="2017-08-13T07:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
+        <a href="/2017/11/22/Guava VS Java 8 (1) Optional/" class="archive-article-date">
+  	<time datetime="2017-11-22T15:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>公司要求要报销的滴滴账单需要以Excel表的形式提交，而滴滴公司则是用pdf发给用户账单，所以，每次报销都会存在将pdf版本的账单转换为Excel的过程，之前是使用的手工导出，报销数量如果少还好，如果，数量一多，则需要反复的在pdf和Excel中复制粘贴，而且有时候还必须手工打字，因为滴滴账单的每段行程上是没有结束时间，只有开始时间，所以，需要自己计算，加上行程的结束时间，才能报销。每次在月末都进行这么一次的转换，实在太麻烦，所以，就需要一个小工具，自动将Excel转换为pdf。</p>
-<h2 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h2><blockquote>
-<ul>
-<li>从pdf中读取内容</li>
-<li>将内容按特定格式写入Excel表中</li>
-</ul>
-</blockquote>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="1-从pdf中读取内容"><a href="#1-从pdf中读取内容" class="headerlink" title="1.从pdf中读取内容"></a>1.从pdf中读取内容</h3><p>从pdf中读取数据需要处理传入的文件，首先需要使用Apache的pdfbox类来解析，解析成String之后，利用java的正则表达式辅助类来生成DidiSheetDTO，核心代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//此正则表达式是为了匹配滴滴账单中每一笔行程的格式</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Pattern pattern = Pattern.compile(<span class="string">"[0-9]&#123;1,2&#125;+\\s[\\u4e00-\\u9fa5]+\\s([0-9\\-]+)\\s([0-9:]+)\\s[^\\s]+\\s+"</span> +</div><div class="line">        <span class="string">"[^\\s]+\\s([^\\s]+)\\s([^\\s]+)\\s[0-9\\.]+\\s([0-9\\.]+).*"</span>);</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;DidiSheetDTO&gt; <span class="title">parseDidiPdf</span><span class="params">(InputStream inputStream)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">    <span class="keyword">if</span> (inputStream == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> Collections.emptyList();</div><div class="line">    &#125;</div><div class="line">    PDDocument pdDocument = PDDocument.load(inputStream);</div><div class="line">    StringWriter write =  <span class="keyword">new</span> StringWriter();</div><div class="line">    PDFTextStripper pdfTextStripper = <span class="keyword">new</span> PDFTextStripper();</div><div class="line">    pdfTextStripper.writeText(pdDocument, write);</div><div class="line">    String writeBuffer = write.getBuffer().toString();</div><div class="line">    List&lt;DidiSheetDTO&gt; didiSheetDTOList = Lists.newArrayList();</div><div class="line">    didiSheetDTOList = parse(writeBuffer);</div><div class="line">    <span class="keyword">return</span> didiSheetDTOList;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;DidiSheetDTO&gt; <span class="title">parse</span><span class="params">(String writeBuffer)</span> </span>&#123;</div><div class="line">    Matcher matcher = pattern.matcher(writeBuffer);</div><div class="line">    List&lt;DidiSheetDTO&gt; didiSheetDTOList = Lists.newArrayList();</div><div class="line">    <span class="keyword">while</span> (matcher.find()) &#123;</div><div class="line">        DidiSheetDTO didiSheetDTO = <span class="keyword">new</span> DidiSheetDTO();</div><div class="line">        didiSheetDTO.setDate(matcher.group(<span class="number">1</span>));</div><div class="line">        didiSheetDTO.setTripDuration(matcher.group(<span class="number">2</span>));</div><div class="line">        didiSheetDTO.setStart(matcher.group(<span class="number">3</span>));</div><div class="line">        didiSheetDTO.setEnd(matcher.group(<span class="number">4</span>));</div><div class="line">        didiSheetDTO.setCost(matcher.group(<span class="number">5</span>));</div><div class="line">        didiSheetDTOList.add(didiSheetDTO);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> didiSheetDTOList;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//DTO辅助类</span></div><div class="line"><span class="comment">//setter和getter注解为lombok中注解，可以省去setter和getter方法</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DidiSheetDTO</span> </span>&#123;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String date;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String tripDuration;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String reason = <span class="string">"加班"</span>;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String start;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String end;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String cost;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String number;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String name;</div><div class="line">    <span class="meta">@Setter</span> <span class="meta">@Getter</span> <span class="keyword">private</span> String remark;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="2-将内容按特定格式写入Excel表中"><a href="#2-将内容按特定格式写入Excel表中" class="headerlink" title="2.将内容按特定格式写入Excel表中"></a>2.将内容按特定格式写入Excel表中</h3><p>第一步中已经将pdf中的内容解析至DidiSheetDTOList中，这一步就是讲list中的数据按照特定格式写入Excel表中。有一个第三方库可以帮助处理java生成Excel表，就是Apache的poi包。用poi包可以将生成的DidiSheetDTOList，转化为HSSFWorkbook类，此类可以用来生成Excel表。除此之外，为了能够导出Excel表，需要使用AbstractExcelView类，继承此类并实现其中的buildExcelDocument方法。<br>滴滴行程单如下：<br><img src="/images/didi.jpg" alt=""><br>关键代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//工具方法，用来将didiSheetDTOList转换为HSSFWorkbook</span></div><div class="line"><span class="function"><span class="keyword">private</span> HSSFWorkbook <span class="title">buildExcel</span><span class="params">(List&lt;DidiSheetDTO&gt; didiSheetDTOList)</span> </span>&#123;</div><div class="line">    HSSFWorkbook workbook = <span class="keyword">new</span> HSSFWorkbook();</div><div class="line">    HSSFSheet sheet = workbook.createSheet();</div><div class="line">    sheet.setDefaultColumnWidth(<span class="number">4</span>);</div><div class="line">    HSSFRow row = sheet.createRow(<span class="number">0</span>);</div><div class="line">    HSSFCell cell = row.createCell(<span class="number">0</span>);</div><div class="line">    cell.setCellValue(<span class="string">"日期"</span>);</div><div class="line">    cell = row.createCell(<span class="number">1</span>);</div><div class="line">    cell.setCellValue(<span class="string">"起止时间"</span>);</div><div class="line">    cell = row.createCell(<span class="number">2</span>);</div><div class="line">    cell.setCellValue(<span class="string">"事由"</span>);</div><div class="line">    cell = row.createCell(<span class="number">3</span>);</div><div class="line">    cell.setCellValue(<span class="string">"起点"</span>);</div><div class="line">    cell = row.createCell(<span class="number">4</span>);</div><div class="line">    cell.setCellValue(<span class="string">"终点"</span>);</div><div class="line">    cell = row.createCell(<span class="number">5</span>);</div><div class="line">    cell.setCellValue(<span class="string">"金额"</span>);</div><div class="line">    cell = row.createCell(<span class="number">6</span>);</div><div class="line">    cell.setCellValue(<span class="string">"票据张数"</span>);</div><div class="line">    cell = row.createCell(<span class="number">7</span>);</div><div class="line">    cell.setCellValue(<span class="string">"报销人"</span>);</div><div class="line">    cell = row.createCell(<span class="number">8</span>);</div><div class="line">    cell.setCellValue(<span class="string">"备注"</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; didiSheetDTOList.size(); i++)&#123;</div><div class="line">        row = sheet.createRow(i+<span class="number">1</span>);</div><div class="line">        row.createCell(<span class="number">0</span>).setCellValue(didiSheetDTOList.get(i).getDate());</div><div class="line">        row.createCell(<span class="number">1</span>).setCellValue(didiSheetDTOList.get(i).getTripDuration());</div><div class="line">        row.createCell(<span class="number">2</span>).setCellValue(didiSheetDTOList.get(i).getReason());</div><div class="line">        row.createCell(<span class="number">3</span>).setCellValue(didiSheetDTOList.get(i).getStart());</div><div class="line">        row.createCell(<span class="number">4</span>).setCellValue(didiSheetDTOList.get(i).getEnd());</div><div class="line">        row.createCell(<span class="number">5</span>).setCellValue(didiSheetDTOList.get(i).getCost());</div><div class="line">        row.createCell(<span class="number">6</span>).setCellValue(didiSheetDTOList.get(i).getNumber());</div><div class="line">        row.createCell(<span class="number">7</span>).setCellValue(didiSheetDTOList.get(i).getName());</div><div class="line">        row.createCell(<span class="number">8</span>).setCellValue(didiSheetDTOList.get(i).getRemark());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> workbook;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//自定义的view，用来导出Excel表</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewExcel</span> <span class="keyword">extends</span> <span class="title">AbstractExcelView</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">buildExcelDocument</span><span class="params">(Map&lt;String, Object&gt; model, HSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        String filename = <span class="string">"didi-taxi.xls"</span>;<span class="comment">//设置下载时客户端Excel的名称</span></div><div class="line">        response.setContentType(<span class="string">"application/vnd.ms-excel"</span>);</div><div class="line">        response.setHeader(<span class="string">"Content-disposition"</span>, <span class="string">"attachment;filename="</span> + filename);</div><div class="line">        OutputStream ouputStream = response.getOutputStream();</div><div class="line">        workbook.write(ouputStream);</div><div class="line">        ouputStream.flush();</div><div class="line">        ouputStream.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//controller层</span></div><div class="line"><span class="meta">@PostMapping</span>(<span class="string">"/"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> BaseResultDto&lt;ModelAndView&gt; <span class="title">handlerFileUpload</span> <span class="params">(@RequestParam(<span class="string">"file"</span>)</span> MultipartFile file, @<span class="title">RequestParam</span><span class="params">(<span class="string">"name"</span>)</span> String name,</span></div><div class="line">                                        @<span class="title">RequestParam</span><span class="params">(<span class="string">"costTime"</span>)</span> String costTime, HttpServletResponse response,</div><div class="line">                                        HttpServletRequest request)<span class="keyword">throws</span> IOException,ParseException &#123;</div><div class="line">    HSSFWorkbook workbook = convertPdfToExcelService.store(file,name,costTime);</div><div class="line">    Map obj = <span class="keyword">null</span>;</div><div class="line">    ViewExcel viewExcel = <span class="keyword">new</span> ViewExcel();</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        viewExcel.buildExcelDocument(obj, workbook, request, response);</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line"><span class="comment">//        ModelAndView modelAndView = new ModelAndView(viewExcel);</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> BaseResultDto&lt;ModelAndView&gt;(<span class="number">1</span>,<span class="string">"测试"</span>,<span class="keyword">new</span> ModelAndView(viewExcel));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>最终生成特定的结果，Excel如下图所示:<br><img src="/images/didi-excel.jpg" alt=""></p>
-<blockquote>
-<p>完整代码见<a href="https://github.com/YiZhendong/didi-taxi-tool" target="_blank" rel="external">github</a></p>
-</blockquote>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Guava对于广大Java开发者来说是一个很有用的工具，提供了很多原生JDK不存在但是却非常有用的原生的类和方法，但是，自从Java 8 发布之后，Java 8 弥补了一些之前的缺憾，一些特性和Guava提供的方法和类非常相似，接下来，将会总结Guava 和Java 8 之间的相同点和不同点。截止目前（2017年11月22日），Guava的最新版本为23.0，就以当前这个版本和Java 8 作比较。</p>
+<p>首先对比Optional<br><img src="/images/Optional-Java.PNG" alt=""> <img src="/images/Optional-Guava.PNG" alt=""><br>左边是Java 8 中的Optional，右边是Guava中的Optional</p>
+<p>对比来看，两个类非常相似，Java 8中的除了filter，map，flatMap这三个方法，其余的方法都可以在Guava中找到对应或重载的方法，反过来，Guava中的Optiona主要多了和Java 8的Optional类转换的三个方法以及一些别的方法。</p>
+<p>以Java 8中的Optional为例，两者大部分方法相同，例如<br>of：为非null的值创建一个Optional；<br>ofNullable：为指定的值创建一个Optional，如果指定的值为null，则返回一个空的Optional；<br>isPresent：如果值存在返回true，否则返回false；<br>get：如果Optional有值则将其返回，否则抛出NoSuchElementException；<br>ifPresent：如果Optional实例有值则为其调用consumer，否则不做处理；<br>orElse：如果有值则将其返回，否则返回指定的其它值；<br>orElseGet：orElseGet与orElse方法类似，区别在于得到的默认值。orElse方法将传入的字符串作为默认值，orElseGet方法可以接受Supplier接口的实现用来生成默认值；<br>orElseThrow：如果有值则将其返回，否则抛出supplier接口创建的异常；</p>
+<p>Java 8中有三个方法Guava中并没有对应的方法：map,flatMap以及filter方法</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map方法对应的解释如下：如果有值，则对其执行调用mapping函数得到返回值。如果返回值不为null，则创建包含mapping返回值的Optional作为map方法返回值，否则返回空Optional。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Optional&lt;FileInputStream&gt; fis =</div><div class="line">    names.stream().filter(name -&gt; !isProcessedYet(name))</div><div class="line">                  .findFirst()</div><div class="line">                  .map(name -&gt; <span class="keyword">new</span> FileInputStream(name));</div></pre></td></tr></table></figure>
+<p>上面是jdk 8中注释的示例代码，从一个文件names的流中过滤，从中选择还未被处理结束的文件，findFirst方法得到Optional<string>对象，最后，map方法返回Optional<fileinputstream>结果。</fileinputstream></string></p>
+<h3 id="flatmap"><a href="#flatmap" class="headerlink" title="flatmap"></a>flatmap</h3><p>如果有值，为其执行mapping函数返回Optional类型返回值，否则返回空Optional。flatMap与map（Funtion）方法类似，区别在于flatMap中的mapper返回值必须是Optional。调用结束时，flatMap不会对结果用Optional封装。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Optional&lt;FileInputStream&gt; fis =</div><div class="line">    names.stream().filter(name -&gt; !isProcessedYet(name))</div><div class="line">                  .findFirst()</div><div class="line">                  .map(name -&gt; Optional.of(<span class="keyword">new</span> FileInputStream(name)));</div></pre></td></tr></table></figure></p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>如果有值并且满足断言条件返回包含该值的Optional，否则返回空Optional。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Optional&lt;Integer&gt; number = Optional.of(<span class="number">100</span>);</div><div class="line">Optional&lt;Integer&gt; biggerThan10 = number.filter((value) -&gt; value &gt; <span class="number">10</span>);</div><div class="line">System.out.println(biggerThan10.get());</div><div class="line"><span class="comment">//输出100</span></div></pre></td></tr></table></figure></p>
+<p>而Guava中的Optional类和Java 8 很相似，其中多了asSet方法，将Optional对象返回为一个元素的set集合，同时，还有一些java 8 和Guava Optional相互转化的方法。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>对于Optional来说，个人觉得Java 8 可以完全取代Guava，同时，Java 8中还有filter和map使得Optional更加方便。</p>
 
       
 
@@ -225,6 +222,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Guava</a>
         		</li>
       		
 		</ul>
@@ -280,7 +281,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/13/didi-taxi-tool/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/22/Guava VS Java 8 (1) Optional/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +295,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/10/18/Tht SpringBoot internal tomcat buffer directory was deleted leading to failures/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          springboot 内置的tomcat 缓存目录被删除导致的错误
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/27/zander-s-todo-list/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">zander&#39;s todo list</div>
+    <a href="/2017/11/12/How to Design a Restful Api/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何设计一个Restful风格的Api接口</div>
       <i class="icon-circle-right"></i>
     </a>
   

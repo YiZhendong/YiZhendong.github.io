@@ -147,6 +147,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Guava VS Java 8 (1) Optional" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/22/Guava VS Java 8 (1) Optional/">Guava VS Java 8 (1) Optional</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/22/Guava VS Java 8 (1) Optional/" class="archive-article-date">
+  	<time datetime="2017-11-22T15:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Guava对于广大Java开发者来说是一个很有用的工具，提供了很多原生JDK不存在但是却非常有用的原生的类和方法，但是，自从Java 8 发布之后，Java 8 弥补了一些之前的缺憾，一些特性和Guava提供的方法和类非常相似，接下来，将会总结Guava 和Java 8 之间的相同点和不同点。截止目前（2017年11月22日），Guava的最新版本为23.0，就以当前这个版本和Java 8 作比较。</p>
+<p>首先对比Optional<br><img src="/images/Optional-Java.PNG" alt=""> <img src="/images/Optional-Guava.PNG" alt=""><br>左边是Java 8 中的Optional，右边是Guava中的Optional</p>
+<p>对比来看，两个类非常相似，Java 8中的除了filter，map，flatMap这三个方法，其余的方法都可以在Guava中找到对应或重载的方法，反过来，Guava中的Optiona主要多了和Java 8的Optional类转换的三个方法以及一些别的方法。</p>
+<p>以Java 8中的Optional为例，两者大部分方法相同，例如<br>of：为非null的值创建一个Optional；<br>ofNullable：为指定的值创建一个Optional，如果指定的值为null，则返回一个空的Optional；<br>isPresent：如果值存在返回true，否则返回false；<br>get：如果Optional有值则将其返回，否则抛出NoSuchElementException；<br>ifPresent：如果Optional实例有值则为其调用consumer，否则不做处理；<br>orElse：如果有值则将其返回，否则返回指定的其它值；<br>orElseGet：orElseGet与orElse方法类似，区别在于得到的默认值。orElse方法将传入的字符串作为默认值，orElseGet方法可以接受Supplier接口的实现用来生成默认值；<br>orElseThrow：如果有值则将其返回，否则抛出supplier接口创建的异常；</p>
+<p>Java 8中有三个方法Guava中并没有对应的方法：map,flatMap以及filter方法</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map方法对应的解释如下：如果有值，则对其执行调用mapping函数得到返回值。如果返回值不为null，则创建包含mapping返回值的Optional作为map方法返回值，否则返回空Optional。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Optional&lt;FileInputStream&gt; fis =</div><div class="line">    names.stream().filter(name -&gt; !isProcessedYet(name))</div><div class="line">                  .findFirst()</div><div class="line">                  .map(name -&gt; <span class="keyword">new</span> FileInputStream(name));</div></pre></td></tr></table></figure>
+<p>上面是jdk 8中注释的示例代码，从一个文件names的流中过滤，从中选择还未被处理结束的文件，findFirst方法得到Optional<string>对象，最后，map方法返回Optional<fileinputstream>结果。</fileinputstream></string></p>
+<h3 id="flatmap"><a href="#flatmap" class="headerlink" title="flatmap"></a>flatmap</h3><p>如果有值，为其执行mapping函数返回Optional类型返回值，否则返回空Optional。flatMap与map（Funtion）方法类似，区别在于flatMap中的mapper返回值必须是Optional。调用结束时，flatMap不会对结果用Optional封装。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Optional&lt;FileInputStream&gt; fis =</div><div class="line">    names.stream().filter(name -&gt; !isProcessedYet(name))</div><div class="line">                  .findFirst()</div><div class="line">                  .map(name -&gt; Optional.of(<span class="keyword">new</span> FileInputStream(name)));</div></pre></td></tr></table></figure></p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>如果有值并且满足断言条件返回包含该值的Optional，否则返回空Optional。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Optional&lt;Integer&gt; number = Optional.of(<span class="number">100</span>);</div><div class="line">Optional&lt;Integer&gt; biggerThan10 = number.filter((value) -&gt; value &gt; <span class="number">10</span>);</div><div class="line">System.out.println(biggerThan10.get());</div><div class="line"><span class="comment">//输出100</span></div></pre></td></tr></table></figure></p>
+<p>而Guava中的Optional类和Java 8 很相似，其中多了asSet方法，将Optional对象返回为一个元素的set集合，同时，还有一些java 8 和Guava Optional相互转化的方法。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>对于Optional来说，个人觉得Java 8 可以完全取代Guava，同时，Java 8中还有filter和map使得Optional更加方便。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Guava</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/22/Guava VS Java 8 (1) Optional/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-How to Design a Restful Api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -850,6 +939,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Java,Guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -859,6 +952,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Java Guava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Guava</a>
               </li>
             
             <div class="clearfix"></div>
